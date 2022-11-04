@@ -1,3 +1,12 @@
 body {
   text-align: center;
+  color: white;
+}
+
+body {
+  background: url(https://p0.pikist.com/photos/140/309/pizza-background-food-snack-mass-pizzeria.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
