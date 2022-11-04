@@ -14,13 +14,20 @@ Test: "It will call on the Pizza object and return the order concatenated togeth
 Code: let test = new Pizza(["anchovies", "pineapple"], "medium");
 Expected Output: 'anchovies,pineapple medium'
 
-Test:
+Describe: function PizzaChoices()
+
+Test: "It will create a pizzachoices object with two properties"
 Code:
 Expected Output:
 
-Test:
+Describe: PizzaChoices.prototype.assignId = function()
+
+Test: 
 Code:
 Expected Output:
+
+
+Describe: PizzaChoices.prototype.addPizza = function(pizza)
 
 Test:
 Code:
