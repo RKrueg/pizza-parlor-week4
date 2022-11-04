@@ -1,7 +1,29 @@
-function Pizza(toppings, size) {
+function SavedPizzaChoices() {
+  this.pizzas ={};
+  this.pizzaId = 0;
+}
+
+SavedPizzaChoices.prototype.assignId = function() {
+  this.pizzaId += 1
+  return this.pizzaId
+}
+
+SavedPizzaChoices.prototype.addPizza = function(pizza) {
+  pizza.id = this.assignId();
+  this.pizzas[pizza.id] = pizza;
+}
+
+SavedPizzaChoices.prototype.findPizza = function(id) {
+  if (this.pizzas[id]) {
+    return this.pizzas[id];
+  }
+  return false;
+}
+
+function Pizza(toppings, size, price) {
   this.toppings = toppings;
   this.size = size;
-  this.price = 0;
+  this.price = price;
 }
 
 Pizza.prototype.fullOrder = function() {
@@ -13,12 +35,11 @@ Pizza.prototype.fullOrder = function() {
 // }
 
 Pizza.prototype.pizzaPrice = function() {
-  let size = document.querySelectorAll("input[name=size]:checked");
-  if(size === "small") {
+  if(this.size === "small") {
     this.price = 7.00
-  } else if (size === "medium") {
+  } else if (this.size === "medium") {
     this.price = 10.00
-  } else if (size === "large") {
+  } else if (this.size === "large") {
     this.price = 15.00
   } 
   return this.price
@@ -43,7 +64,7 @@ const userSize = document.querySelectorAll("input[name=size]:checked");
     paragraph.append(element.value);
     document.body.append(paragraph);
   });
-  document.querySelector("p#order").innerText = totalPrice.price;
+  document.querySelector("p#order").innerText = totalPrice;
 }
 
 window.addEventListener("load", function() {
