@@ -27,14 +27,6 @@ function Pizza(toppings, size) {
   this.id = 0;
 }
 
-Pizza.prototype.fullOrder = function() {
-  return "Your toppings are: " + this.toppings + " " + "and your size is: " + this.size + ". " + "Your total is: " + this.price;
-};
-
-//Pizza.prototype.size = function() {
-//   let size = document.querySelectorAll("input[name=size]:checked")
-// }
-
 Pizza.prototype.pizzaPrice = function() {
   if(this.size === "small") {
     this.price = 7
@@ -45,6 +37,15 @@ Pizza.prototype.pizzaPrice = function() {
   } 
   return this.price
 } 
+
+Pizza.prototype.fullOrder = function() {
+  return "Your toppings are: " + this.toppings + " " + "and your size is: " + this.size + ". " + "Your total is: " + this.price;
+};
+
+//Pizza.prototype.size = function() {
+//   let size = document.querySelectorAll("input[name=size]:checked")
+// }
+
 
 // function handleForm(event) {
 //   event.preventDefault();
@@ -68,7 +69,7 @@ Pizza.prototype.pizzaPrice = function() {
 //   document.querySelector("p#order").innerText = totalPrice;
 // }
 
-let pizzaChoice = new PizzaChoices();
+//let pizzaChoice = new PizzaChoices();
 
 PizzaChoices.prototype.listPizzaOptions = function() {
   let newArray =[];
@@ -96,6 +97,7 @@ PizzaChoices.prototype.listPizzaOptions = function() {
 
 function handleFormSubmission (event) {
   event.preventDefault();
+  let pizzaChoice = new PizzaChoices();
   const userToppings = document.querySelector("input[name=toppings]:checked").value;
   const userSize = document.querySelector("input[name=size]:checked").value;
   let newPizza = new Pizza(userToppings, userSize);
