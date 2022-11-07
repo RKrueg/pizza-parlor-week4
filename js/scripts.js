@@ -1,5 +1,5 @@
 function PizzaChoices() {
-  this.pizzas ={};
+  this.pizzas = {};
   this.pizzaId = 0;
 }
 
@@ -20,64 +20,46 @@ PizzaChoices.prototype.findPizza = function(id) {
   return false;
 }
 
-function Pizza(toppings, size) {
-  this.toppings = [toppings];
+PizzaChoices.prototype.deletePizzaOrder = function(id) {
+	if (this.pizzas[id] === undefined) {
+		return false;
+	}
+	delete this.pizzas[id];
+	return true;
+}
+
+function Pizza(toppings, size, price) {
+  this.toppings = toppings;
   this.size = size;
-  this.price = 0;
+  this.price = price;
   this.id = 0;
 }
 
 Pizza.prototype.pizzaPrice = function() {
-  if(this.size === "small") {
-    this.price = 7
+  if (this.size === "small") {
+    let price = '$7'
+    return price;
   } else if (this.size === "medium") {
-    this.price = 10
+    let price = '$10'
+    return price;
   } else if (this.size === "large") {
-    this.price = 15
+    let price = '$15'
+    return price;
   } 
-  return this.price
 } 
 
 Pizza.prototype.fullOrder = function() {
-  return "Your toppings are: " + this.toppings + " " + "and your size is: " + this.size + ". " + "Your total is: " + this.price;
+  return "Your toppings are: " + this.toppings + " " + "and your size is: " + this.size + ". " + "Your total is: " + this.price + ". " + "Click here to see pizza order in a list!"
 };
 
-//Pizza.prototype.size = function() {
-//   let size = document.querySelectorAll("input[name=size]:checked")
-// }
+let choice = new PizzaChoices();
 
-
-// function handleForm(event) {
-//   event.preventDefault();
-//   let totalPrice = this.price;
-//   const userToppings = document.querySelectorAll("input[name=toppings]:checked");
-//   const userToppingsArray = Array.from(userToppings);
-// const userSize = document.querySelectorAll("input[name=size]:checked");
-//   const userSizeArray = Array.from(userSize);
-
-
-//   userToppingsArray.forEach(function(element) {
-//     const paragraph = document.createElement("p");
-//     paragraph.append(element.value);
-//     document.body.append(paragraph);
-//   });
-//   userSizeArray.forEach(function(element) {
-//     const paragraph = document.createElement("p");
-//     paragraph.append(element.value);
-//     document.body.append(paragraph);
-//   });
-//   document.querySelector("p#order").innerText = totalPrice;
-// }
-
-//let pizzaChoice = new PizzaChoices();
-
-PizzaChoices.prototype.listPizzaOptions = function() {
+PizzaChoices.prototype.listPizzas = function() {
   let newArray =[];
   for (const key in this.pizzas) {
     newArray.push(this.pizzas[key]);
   }
-  let pizzasList = document.querySelector("div#pizzas");
-  //pizzasList.innerText = null;
+  let pizzaDetails = document.querySelector("div#pizzas");
   const ul = document.createElement("ul");
   newArray.forEach(function(pizza) {
     const li = document.createElement("li");
@@ -85,26 +67,27 @@ PizzaChoices.prototype.listPizzaOptions = function() {
     li.setAttribute("id", pizza.id);
     ul.append(li);
   });
-  pizzasList.append(ul);
+  pizzaDetails.append(ul);
 }
 
-// function displayPizzaChoice() {
-//   const pizza = pizzaChoice.findPizza();
-//   document.querySelector(".pizzas").innerText = pizza.toppings;
-//   document.querySelector(".pizzas").innerText = pizza.size;
-//   document.querySelector(".pizzas").innerText = pizza.price;
-// }
+function displayPizzaChoice(event) {
+  const pizza = choice.findPizza(event.target.id);
+  document.querySelector(".topping-chosen").innerText = pizza.toppings;
+  document.querySelector(".size-chosen").innerText = pizza.size;
+  document.querySelector(".total-price").innerText = pizza.price;
+  document.querySelector("div#pizza-details").removeAttribute("class");
+}
 
 function handleFormSubmission (event) {
   event.preventDefault();
-  let pizzaChoice = new PizzaChoices();
   const userToppings = document.querySelector("input[name=toppings]:checked").value;
   const userSize = document.querySelector("input[name=size]:checked").value;
   let newPizza = new Pizza(userToppings, userSize);
-  pizzaChoice.addPizza(newPizza);
-	pizzaChoice.listPizzaOptions(newPizza);
+  choice.addPizza(newPizza);
+	choice.listPizzas();
 }
 
 window.addEventListener("load", function() {
   document.querySelector("form#pizzaSelection").addEventListener("submit", handleFormSubmission);
+  document.querySelector("div#pizzas").addEventListener("click", displayPizzaChoice);
 })
