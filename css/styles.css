@@ -1,4 +1,4 @@
-body {
+form {
   text-align: center;
   color: white;
 }
@@ -9,5 +9,28 @@ body {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  color: white;
+}
+/* p {
+  color: white;
+}
+
+h2 {
+  color: white;
+} */
+
+h1 {
+  background-color: red;
+}
+
+.form-check h1 {
+  background-color: green;
 }
 
