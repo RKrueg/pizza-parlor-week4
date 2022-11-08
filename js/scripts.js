@@ -4,8 +4,8 @@ function PizzaChoices() {
 }
 
 PizzaChoices.prototype.assignId = function() {
-  this.pizzaId += 1
-  return this.pizzaId
+  this.pizzaId += 1;
+  return this.pizzaId;
 }
 
 PizzaChoices.prototype.addPizza = function(pizza) {
@@ -20,13 +20,13 @@ PizzaChoices.prototype.findPizza = function(id) {
   return false;
 }
 
-PizzaChoices.prototype.deletePizzaOrder = function(id) {
-	if (this.pizzas[id] === undefined) {
-		return false;
-	}
-	delete this.pizzas[id];
-	return true;
-}
+// PizzaChoices.prototype.deletePizzaOrder = function(id) {
+// 	if (this.pizzas[id] === undefined) {
+// 		return false;
+// 	}
+// 	delete this.pizzas[id];
+// 	return true;
+// }
 
 function Pizza(toppings, size, price) {
   this.toppings = toppings;
@@ -37,14 +37,14 @@ function Pizza(toppings, size, price) {
 
 Pizza.prototype.pizzaPrice = function() {
   if (this.size === "small") {
-    let price = '$7'
-    return price;
+     this.price = '$7'
+    return this.price;
   } else if (this.size === "medium") {
-    let price = '$10'
-    return price;
+     this.price = '$10'
+    return this.price;
   } else if (this.size === "large") {
-    let price = '$15'
-    return price;
+    this.price = '$15'
+    return this.price;
   } 
 } 
 
@@ -80,9 +80,12 @@ function displayPizzaChoice(event) {
 
 function handleFormSubmission (event) {
   event.preventDefault();
+  debugger;
   const userToppings = document.querySelector("input[name=toppings]:checked").value;
   const userSize = document.querySelector("input[name=size]:checked").value;
+
   let newPizza = new Pizza(userToppings, userSize);
+  newPizza.pizzaPrice();
   choice.addPizza(newPizza);
 	choice.listPizzas();
 }
