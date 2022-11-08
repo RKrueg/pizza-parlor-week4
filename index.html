@@ -17,10 +17,14 @@
         <h2>Pick Your Toppings
           <small class="text-muted">Choose only one!</small>
         </h2>
-        <label for="anchovies"></label>
-        <input id="anchovies" type="checkbox" name="toppings" class="form-check-input" value="anchovies">Anchovies<br>
+        <label for="Salami"></label>
+        <input id="Salami" type="checkbox" name="toppings" class="form-check-input" value="Salami">Salami<br>
         <label for="pepperoni"></label>
-        <input type="checkbox" name="toppings" id="pepperoni" class="form-check-input" value="pepperoni">Pepperoni
+        <input id="pepperoni" type="checkbox" name="toppings" class="form-check-input" value="pepperoni">Pepperoni<br>
+        <label for="sausage"></label>
+        <input id="sausage" type="checkbox" name="toppings" class="form-check-input" value="sausage">Sausage<br>
+        <label for="Bacon"></label>
+        <input id="Bacon" type="checkbox" name="toppings" class="form-check-input" value="Bacon">Bacon<br>
         <h2>Pick Your Size!</h2>
         <label for="small"></label>
         <input id="small" type="checkbox" name="size" class="form-check-input" value="small">Small<br>
@@ -31,12 +35,19 @@
         <div class="btn-group">
           <button type="submit">Place Order</button><br>
       </form>
-      <button type="reset">New Order</button>
     </div>
   </div>
   </div><br>
   <div class="container">
-    <div id="pizzas" class="text-center">
+    <div id="pizzas">
+      <div class="col-md-6">
+        <h2>Your Order</h2>
+        <div id="pizza-details" class="hidden">
+          <h2>Pizza Details:</h2>
+          <p>Toppings: <span class="topping-chosen"></span></p>
+          <p>Size: <span class="size-chosen"></span></p>
+          <p>Total Price: <span class="total-price"></span></p>
+        </div>
     </div>
   </div>
 
